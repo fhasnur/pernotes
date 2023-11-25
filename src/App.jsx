@@ -2,7 +2,7 @@ function App() {
 
   return (
     <>
-      <h1>Personal Notes</h1>
+      <h1 className="text-black">per.notes</h1>
     </>
   )
 }
