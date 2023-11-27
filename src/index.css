@@ -14,80 +14,8 @@
 
 body {
   margin: 0;
-  @apply text-slate-50 min-h-screen;
 }
 
-pre::-webkit-scrollbar {
-  @apply hidden;
-}
-
-pre {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-::-webkit-scrollbar {
-  width: 0.4rem;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-black;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply rounded-full bg-gray-700;
-}
-
-::-webkit-scrollbar-thumb:hover,
-::-webkit-scrollbar-thumb:active {
-  @apply bg-gray-600;
-}
-
-.btn {
-  @apply text-sm normal-case;
-}
-
-.btn-primary {
-  @apply hover:bg-indigo-600 active:bg-indigo-600 text-slate-50 outline-indigo-400 hover:outline-indigo-500 active:outline-indigo-500;
-}
-
-.comment-list-height {
-  @apply max-h-72;
-  min-height: 6rem;
-}
-
-.thumbnail {
-  @apply w-full h-64 sm:h-40 md:h-48 lg:h-44 xl:h-56 2xl:h-64 rounded-lg bg-gray-800;
-}
-
-@media (max-width: 536px) {
-  .thumbnail {
-    @apply h-48;
-  }
-}
-
-@media (max-width: 382px) {
-  .thumbnail {
-    @apply h-36;
-  }
-}
-
-@media (min-width: 1024px) {
-  .comment-list-height {
-    max-height: calc(100vh - 340px);
-  }
-}
-
-@media (min-width: 1680px) {
-  .thumbnail {
-    @apply h-72;
-  }
-}
-
-@media (min-width: 1800px) {
-  .thumbnail {
-    height: 20rem;
-  }
+.gradient-bg {
+  background: linear-gradient(to right, #D1DEEE, #E7EDD5);
 }

@@ -1,8 +1,14 @@
+import Header from "./components/Header"
+import Content from "./components/Content"
+
 function App() {
 
   return (
     <>
-      <h1 className="text-black">per.notes</h1>
+      <Header />
+      <main>
+        <Content />
+      </main>
     </>
   )
 }
