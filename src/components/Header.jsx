@@ -45,7 +45,7 @@ const Header = () => {
             <div className="w-2/5">
               <SearchBar />
             </div>
-            <div className="btn btn-link text-custom-txt">
+            <div className="btn btn-link p-0 text-custom-txt-primary">
               <FiMoon size={25} />
             </div>
           </div>
