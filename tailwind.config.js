@@ -8,8 +8,11 @@ export default {
     extend: {
       colors: {
         'custom-primary': '#ECF4FF',
-        'custom-secondary': '#D7DDD9',
-        'custom-txt': '#0F1321',
+        'custom-txt-primary': '#0F1321',
+        'custom-txt-secondary': '#ECF4FF',
+        'custom-btn-primary': '#D7DDD9',
+        'custom-btn-secondary': '#2657ED',
+        'custom-btn-tertiary': '#0F1321',
       },
     },
   },
