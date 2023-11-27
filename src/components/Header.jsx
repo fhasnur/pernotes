@@ -21,13 +21,13 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="gradient-bg py-4 sticky top-0 left-0 z-50 bg-opacity-80 backdrop-filter backdrop-blur-md backdrop-saturate-100 shadow-sm">
+    <header className="gradient-bg py-4 sticky top-0 left-0 z-50 shadow-sm">
       <Container>
         {isMobile ? (
           <>
             <div className="flex items-center text-tertiary">
               <div className="flex-1">
-                <p className="text-2xl text-custom-txt tracking-tighter  font-medium">per.notes</p>
+                <p className="text-2xl text-custom-txt tracking-tighter font-medium">per.<span className="text-custom-btn-secondary">notes</span></p>
               </div>
               <div className="flex-none text-custom-txt">
                 <FiMoon size={24} />
@@ -40,7 +40,7 @@ const Header = () => {
         ) : (
           <div className="flex justify-between items-center text-tertiary">
             <div>
-              <p className="text-2xl text-custom-txt tracking-tighter font-medium">per.notes</p>
+              <p className="text-2xl text-custom-txt tracking-tighter font-medium">per.<span className="text-custom-btn-secondary">notes</span></p>
             </div>
             <div className="w-2/5">
               <SearchBar />

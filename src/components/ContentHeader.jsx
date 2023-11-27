@@ -10,7 +10,7 @@ const ContentHeader = () => {
   return (
     <div className="flex items-center my-8">
       <div className="flex-1">
-        <h1 className="text-2xl lg:text-3xl tracking-tighter text-custom-txt font-medium">My Notes</h1>
+        <h1 className="text-2xl text-custom-txt font-medium lg:-ml-1">📝 Notes</h1>
       </div>
       <div className="flex-none">
         <Button onClick={handleClick} variant="secondary" className="ml-2 hover:bg-[#3261F2]">
