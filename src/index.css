@@ -19,3 +19,31 @@ body {
 .gradient-bg {
   background: linear-gradient(to right, #D1DEEE, #E7EDD5);
 }
+
+pre::-webkit-scrollbar {
+  @apply hidden;
+}
+
+pre {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-gray-700;
+}
+
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  @apply bg-gray-600;
+}
