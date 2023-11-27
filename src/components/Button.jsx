@@ -17,7 +17,7 @@ const Button = ({ children, onClick, className, variant }) => {
   return (
     <button
       onClick={onClick}
-      className={`btn px-5 py-3 font-normal rounded-full transition-all duration-300 ${getVariantClass()} ${className}`}
+      className={`btn font-normal rounded-full transition-all duration-300 ${getVariantClass()} ${className}`}
     >
       {children}
     </button>
