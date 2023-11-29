@@ -1,28 +1,24 @@
+import PropTypes from 'prop-types'
 import Card from "./Card"
 
-const ContentItem = () => {
+const ContentItem = ({ notes, showFormattedDate }) => {
   return (
     <div className="flex flex-wrap justify-between">
-      <div className="w-full lg:w-96 mb-5">
-        <Card />
-      </div>
-      <div className="w-full lg:w-96 mb-5">
-        <Card />
-      </div>
-      <div className="w-full lg:w-96 mb-5">
-        <Card />
-      </div>
-      <div className="w-full lg:w-96 mb-5">
-        <Card />
-      </div>
-      <div className="w-full lg:w-96 mb-5">
-        <Card />
-      </div>
-      <div className="w-full lg:w-96 mb-5">
-        <Card />
-      </div>
-    </div>
+      {notes.map((note, index) => (
+        <Card
+          key={index}
+          note={note}
+          showFormattedDate={showFormattedDate}
+        />
+      ))}
+
+    </div >
   )
+}
+
+ContentItem.propTypes = {
+  notes: PropTypes.array.isRequired,
+  showFormattedDate: PropTypes.func.isRequired
 }
 
 export default ContentItem
