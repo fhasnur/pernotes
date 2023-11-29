@@ -20,6 +20,36 @@ body {
   background: linear-gradient(to right, #D1DEEE, #E7EDD5);
 }
 
+.swal2-confirm {
+  border-radius: 30px !important;
+  background-color: #2657ED !important;
+}
+
+.swal2-cancel {
+  border-radius: 30px !important;
+  background-color: #EB5353 !important;
+}
+
+.swal2-confirm:hover {
+  background-color: #1e4aad !important;
+}
+
+.swal2-cancel:hover {
+  background-color: #c53131 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .swal2-confirm {
+    border-radius: 30px !important;
+    background-color: #2657ED !important;
+  }
+
+  .swal2-cancel {
+    border-radius: 30px !important;
+    background-color: #EB5353 !important;
+  }
+}
+
 pre::-webkit-scrollbar {
   @apply hidden;
 }
