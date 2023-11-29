@@ -14,22 +14,22 @@ const Card = () => {
         <p className="my-6 line-clamp-6">Babel merupakan tools open-source yang digunakan untuk mengubah sintaks ECMAScript 2015+ menjadi sintaks yang didukung oleh JavaScript engine versi lama. Babel sering dipakai ketika kita menggunakan sintaks terbaru termasuk sintaks JSX.  JavaScript engine versi lama. Babel sering dipakai ketika kita menggunakan sintaks terbaru termasuk sintaks JSX. JavaScript engine versi lama. Babel sering dipakai ketika kita menggunakan sintaks terbaru termasuk sintaks JSX.</p>
       </div>
       <div className="flex items-center justify-between mt-1 mb-1">
-        <Button variant="primary" className="w-1/2 font-normal lg:-ml-1 hover:bg-[#D9DDDA]">
+        <Button variant="primary" className="w-1/2 font-normal lg:-ml-1 hover:bg-[#D9DDDA] hover:text-custom-btn-secondary hover:border-custom-btn-secondary">
           <FaRegNoteSticky size={15} />
           Read more
         </Button>
         <div className="tooltip tooltip-bottom" data-tip="archive">
-          <Button variant="primary" className="hover:bg-[#D9DDDA]">
+          <Button variant="primary" className="hover:bg-[#D9DDDA] hover:border-custom-txt-primary">
             <RiInboxArchiveLine size={16} />
           </Button>
         </div>
         <div className="tooltip tooltip-bottom" data-tip="edit">
-          <Button variant="primary" className="hover:bg-[#D9DDDA]">
+          <Button variant="primary" className="hover:bg-[#D9DDDA] hover:text-[#279EFF] hover:border-[#279EFF]">
             <FiEdit size={16} />
           </Button>
         </div>
         <div className="tooltip tooltip-bottom" data-tip="delete">
-          <Button variant="primary" className="hover:bg-[#D9DDDA]">
+          <Button variant="primary" className="hover:bg-[#D9DDDA] hover:text-[#FF1E00] hover:border-[#FF1E00]">
             <FiTrash size={16} />
           </Button>
         </div>
