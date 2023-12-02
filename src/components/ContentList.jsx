@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import Card from "./Card"
 
-const ContentItem = ({ notes, showFormattedDate }) => {
+const ContentList = ({ notes, showFormattedDate }) => {
   return (
     <div className="flex flex-wrap justify-between">
       {notes.map((note, index) => (
@@ -11,14 +11,13 @@ const ContentItem = ({ notes, showFormattedDate }) => {
           showFormattedDate={showFormattedDate}
         />
       ))}
-
     </div >
   )
 }
 
-ContentItem.propTypes = {
-  notes: PropTypes.array.isRequired,
+ContentList.propTypes = {
+  notes: PropTypes.object.isRequired,
   showFormattedDate: PropTypes.func.isRequired
 }
 
-export default ContentItem
+export default ContentList
