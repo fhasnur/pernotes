@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Button from "./Button"
 import { FaRegNoteSticky } from "react-icons/fa6"
@@ -5,6 +6,17 @@ import { RiInboxArchiveLine } from "react-icons/ri"
 import { FiEdit, FiTrash } from "react-icons/fi"
 
 const Card = ({ note, showFormattedDate }) => {
+  const [isReadMoreDisabled, setIsReadMoreDisabled] = useState(false)
+  const maxWords = 30
+
+  useEffect(() => {
+    setIsReadMoreDisabled(countWords(note.body) <= maxWords)
+  }, [note.body])
+
+  const countWords = (text) => {
+    return text.split(/\s+/).filter((word) => word !== '').length
+  }
+
   return (
     <div className="flex-grow max-w-sm my-2overflow-hidden mb-5">
       <div
@@ -22,6 +34,7 @@ const Card = ({ note, showFormattedDate }) => {
           <Button
             variant="primary"
             className="w-1/2 font-normal lg:-ml-1 hover:bg-[#D9DDDA] hover:text-custom-btn-secondary hover:border-custom-btn-secondary"
+            disabled={isReadMoreDisabled}
           >
             <FaRegNoteSticky size={15} />
             Read more

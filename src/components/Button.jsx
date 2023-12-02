@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-const Button = ({ children, onClick, className, variant }) => {
+const Button = ({ children, onClick, className, disabled, variant }) => {
   const getVariantClass = () => {
     switch (variant) {
       case 'primary':
@@ -18,6 +18,7 @@ const Button = ({ children, onClick, className, variant }) => {
     <button
       onClick={onClick}
       className={`btn font-normal rounded-full transition-all duration-300 ${getVariantClass()} ${className}`}
+      disabled={disabled}
     >
       {children}
     </button>
@@ -28,6 +29,7 @@ Button.propTypes = {
   children: PropTypes.node,
   onClick: PropTypes.func,
   className: PropTypes.string,
+  disabled: PropTypes.bool,
   variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
 }
 
