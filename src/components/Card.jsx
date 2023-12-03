@@ -4,6 +4,7 @@ import Button from "./Button"
 import { FaRegNoteSticky } from "react-icons/fa6"
 import { RiInboxArchiveLine } from "react-icons/ri"
 import { FiEdit, FiTrash } from "react-icons/fi"
+import Swal from 'sweetalert2'
 
 const Card = ({ note, showFormattedDate }) => {
   const [isReadMoreDisabled, setIsReadMoreDisabled] = useState(false)
@@ -15,6 +16,24 @@ const Card = ({ note, showFormattedDate }) => {
 
   const countWords = (text) => {
     return text.split(/\s+/).filter((word) => word !== '').length
+  }
+
+  const handleReadMore = () => {
+    const formattedBody = note.body.replace(/\n/g, '<br>');
+
+    Swal.fire({
+      title: note.title,
+      html:
+        `<div class="max-h-96 overflow-y-auto text-left">${formattedBody}</div>
+         <p class="font-light text-base mt-6">${showFormattedDate(note.createdAt)}</p>`,
+      confirmButtonText: 'Close',
+      customClass: {
+        popup: 'rounded-3xl',
+        scrollbar: 'swiper-scrollbar',
+        container: 'swiper-container'
+      },
+      scrollbarTarget: '.swiper-scrollbar'
+    })
   }
 
   return (
@@ -33,6 +52,7 @@ const Card = ({ note, showFormattedDate }) => {
         <div className="flex items-center justify-between mt-1 mb-1">
           <Button
             variant="primary"
+            onClick={handleReadMore}
             className="w-1/2 font-normal lg:-ml-1 hover:bg-[#D9DDDA] hover:text-custom-btn-secondary hover:border-custom-btn-secondary"
             disabled={isReadMoreDisabled}
           >
