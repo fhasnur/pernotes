@@ -16,7 +16,7 @@ const ContentList = ({ notes, showFormattedDate }) => {
 }
 
 ContentList.propTypes = {
-  notes: PropTypes.object.isRequired,
+  notes: PropTypes.array.isRequired,
   showFormattedDate: PropTypes.func.isRequired
 }
 

@@ -9,10 +9,12 @@ const Button = ({ children, onClick, className, disabled, variant }) => {
         return 'bg-custom-btn-secondary text-custom-txt-secondary'
       case 'tertiary':
         return 'bg-custom-btn-tertiary text-custom-txt-secondary'
+      case 'danger':
+        return 'bg-custom-btn-danger text-custom-txt-secondary'
       default:
-        return '';
+        return ''
     }
-  };
+  }
 
   return (
     <button
@@ -30,7 +32,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'danger']),
 }
 
 export default Button

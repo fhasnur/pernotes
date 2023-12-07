@@ -13,6 +13,7 @@ export default {
         'custom-btn-primary': '#D7DDD9',
         'custom-btn-secondary': '#2657ED',
         'custom-btn-tertiary': '#0F1321',
+        'custom-btn-danger': '#FE0000',
       },
     },
   },

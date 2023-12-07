@@ -15,8 +15,10 @@ const Card = ({ note, showFormattedDate }) => {
   }, [note.body])
 
   const countWords = (text) => {
-    return text.split(/\s+/).filter((word) => word !== '').length
-  }
+    const words = (text ?? '').split(' ')
+
+    return words.length
+  };
 
   const handleReadMore = () => {
     const formattedBody = note.body.replace(/\n/g, '<br>');
@@ -28,7 +30,7 @@ const Card = ({ note, showFormattedDate }) => {
          <p class="font-light text-base mt-6">${showFormattedDate(note.createdAt)}</p>`,
       confirmButtonText: 'Close',
       customClass: {
-        popup: 'rounded-3xl',
+        popup: 'rounded-xl',
         scrollbar: 'swiper-scrollbar',
         container: 'swiper-container'
       },
@@ -90,7 +92,7 @@ const Card = ({ note, showFormattedDate }) => {
 }
 
 Card.propTypes = {
-  note: PropTypes.array.isRequired,
+  note: PropTypes.object.isRequired,
   showFormattedDate: PropTypes.func.isRequired
 }
 
