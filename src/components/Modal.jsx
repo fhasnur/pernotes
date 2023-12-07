@@ -19,7 +19,7 @@ const Modal = ({
           onChange={handleChange}
           required
         />
-        <label id="char-count" className="absolute text-sm top-0 right-0 mt-1 mr-2 text-gray-500">0/50</label>
+        <label id="char-count" className="absolute text-sm top-0 right-0 mt-1 mr-2 text-gray-500">{formData.title.length}/50</label>
       </div>
       <div className="relative">
         <label id="body" className="absolute text-md font-semibold left-0 mt-1 text-gray-500">Notes</label>

@@ -21,7 +21,10 @@ const Content = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }))
+
+    if (value.length <= 50) {
+      setFormData((prevData) => ({ ...prevData, [name]: value }))
+    }
   }
 
   const handleAdd = () => {
