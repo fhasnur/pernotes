@@ -17,6 +17,7 @@ const Modal = ({
           placeholder="Enter a title"
           value={formData.title}
           onChange={handleChange}
+          required
         />
         <label id="char-count" className="absolute text-sm top-0 right-0 mt-1 mr-2 text-gray-500">0/50</label>
       </div>
@@ -28,6 +29,7 @@ const Modal = ({
           placeholder="Capture your thoughts here"
           value={formData.body}
           onChange={handleChange}
+          required
         />
       </div>
       <div className="mt-6 mb-2">
