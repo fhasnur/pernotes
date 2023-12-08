@@ -14,7 +14,7 @@ const ContentHeader = ({
   handleCancel
 }) => {
   return (
-    <div className="flex items-center my-8">
+    <div className="flex items-center mt-28 mb-8">
       <div className="flex-1">
         <h1 className="text-2xl text-custom-txt font-medium lg:-ml-2">📝 Notes</h1>
       </div>

@@ -63,7 +63,7 @@ const Content = () => {
 
   return (
     <section>
-      <div className="flex min-h-screen gradient-bg">
+      <div className="flex min-h-screen gradient-bg -mt-20">
         <Container>
           <ContentHeader
             modalIsOpen={modalIsOpen}

@@ -21,7 +21,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="gradient-bg py-4 sticky top-0 left-0 z-50 shadow-sm">
+    <header className="bg-custom-primary py-4 sticky top-0 left-0 z-50 shadow-sm bg-opacity-50 lg:bg-opacity-20 backdrop-filter backdrop-blur-md backdrop-saturate-100">
       <Container>
         {isMobile ? (
           <>
