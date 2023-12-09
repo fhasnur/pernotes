@@ -21,10 +21,8 @@ const Card = ({
   }, [note.body])
 
   const countWords = (text) => {
-    const words = (text ?? '').split(' ')
-
-    return words.length
-  };
+    return text.split(/\s+/).filter((word) => word !== '').length
+  }
 
   const handleReadMore = () => {
     const formattedBody = note.body.replace(/\n/g, '<br>');

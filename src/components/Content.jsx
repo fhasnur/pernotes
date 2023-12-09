@@ -29,7 +29,10 @@ const Content = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (value.length <= 50) {
+    if (name === 'title' && value.length > 50) {
+      const truncatedTitle = value.substring(0, 50);
+      setFormData((prevData) => ({ ...prevData, [name]: truncatedTitle }));
+    } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }))
     }
   }
@@ -131,17 +134,29 @@ const Content = () => {
             setIsArchive={setIsArchive}
           />
           {isArchive ? (
-            <ArchiveList
-              notes={archivedNotes}
-              showFormattedDate={showFormattedDate}
-              handleRestore={handleRestore}
-            />
+            archivedNotes.length === 0 ? (
+              <div className="flex justify-center">
+                <p>Archive is empty.</p>
+              </div>
+            ) : (
+              <ArchiveList
+                notes={archivedNotes}
+                showFormattedDate={showFormattedDate}
+                handleRestore={handleRestore}
+              />
+            )
           ) : (
-            <ContentList
-              notes={notes}
-              showFormattedDate={showFormattedDate}
-              handleArchive={handleArchive}
-            />
+            notes.length === 0 ? (
+              <div className="flex justify-center">
+                <p>Notes is empty.</p>
+              </div>
+            ) : (
+              <ContentList
+                notes={notes}
+                showFormattedDate={showFormattedDate}
+                handleArchive={handleArchive}
+              />
+            )
           )}
         </Container>
       </div>
