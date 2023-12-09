@@ -4,9 +4,15 @@ import Button from "./Button"
 import { FaRegNoteSticky } from "react-icons/fa6"
 import { RiInboxArchiveLine } from "react-icons/ri"
 import { FiEdit, FiTrash } from "react-icons/fi"
+import { LuArchiveRestore } from "react-icons/lu"
 import Swal from 'sweetalert2'
 
-const Card = ({ note, showFormattedDate }) => {
+const Card = ({
+  note,
+  showFormattedDate,
+  handleArchive,
+  handleRestore,
+}) => {
   const [isReadMoreDisabled, setIsReadMoreDisabled] = useState(false)
   const maxWords = 30
 
@@ -38,6 +44,14 @@ const Card = ({ note, showFormattedDate }) => {
     })
   }
 
+  const handleClickArchive = () => {
+    if (note.archived) {
+      handleRestore(note.id)
+    } else {
+      handleArchive(note.id)
+    }
+  }
+
   return (
     <div className="flex-grow max-w-sm my-2overflow-hidden mb-5">
       <div
@@ -61,12 +75,17 @@ const Card = ({ note, showFormattedDate }) => {
             <FaRegNoteSticky size={15} />
             Read more
           </Button>
-          <div className="tooltip tooltip-bottom" data-tip="archive">
+          <div className="tooltip tooltip-bottom" data-tip={note.archived ? "restore" : "archive"}>
             <Button
               variant="primary"
+              onClick={handleClickArchive}
               className="hover:bg-[#D9DDDA] hover:border-custom-txt-primary"
             >
-              <RiInboxArchiveLine size={16} />
+              {note.archived ? (
+                <LuArchiveRestore size={16} />
+              ) : (
+                <RiInboxArchiveLine size={16} />
+              )}
             </Button>
           </div>
           <div className="tooltip tooltip-bottom" data-tip="edit">
@@ -87,13 +106,15 @@ const Card = ({ note, showFormattedDate }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
 Card.propTypes = {
   note: PropTypes.object.isRequired,
-  showFormattedDate: PropTypes.func.isRequired
+  showFormattedDate: PropTypes.func.isRequired,
+  handleArchive: PropTypes.func.isRequired,
+  handleRestore: PropTypes.func.isRequired,
 }
 
 export default Card

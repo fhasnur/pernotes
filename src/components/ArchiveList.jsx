@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import Card from "./Card"
 
-const ContentList = ({ notes, showFormattedDate, handleArchive, handleDelete }) => {
+const ArchiveList = ({ notes, showFormattedDate, handleRestore }) => {
   return (
     <div className="flex flex-wrap justify-between">
       {notes.map((note, index) => (
@@ -9,19 +9,17 @@ const ContentList = ({ notes, showFormattedDate, handleArchive, handleDelete }) 
           key={index}
           note={note}
           showFormattedDate={showFormattedDate}
-          handleArchive={handleArchive}
-          handleDelete={handleDelete}
+          handleRestore={handleRestore}
         />
       ))}
     </div >
   )
 }
 
-ContentList.propTypes = {
+ArchiveList.propTypes = {
   notes: PropTypes.array.isRequired,
   showFormattedDate: PropTypes.func.isRequired,
-  handleArchive: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
+  handleRestore: PropTypes.func.isRequired,
 }
 
-export default ContentList
+export default ArchiveList
