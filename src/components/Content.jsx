@@ -204,6 +204,34 @@ const Content = () => {
     }
   }
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this note!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+      customClass: {
+        popup: 'rounded-xl',
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const selectedData = data.filter((note) => note.id !== id)
+        setData(selectedData)
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Note deleted.',
+          customClass: {
+            popup: 'rounded-xl',
+          },
+        })
+      }
+    })
+  }
+
   return (
     <section>
       <div className="flex min-h-screen gradient-bg -mt-20">
@@ -232,6 +260,7 @@ const Content = () => {
                 handleRestore={handleRestore}
                 handleEdit={handleEdit}
                 isEdit={isEdit}
+                handleDelete={handleDelete}
               />
             )
           ) : (
@@ -246,6 +275,7 @@ const Content = () => {
                 handleArchive={handleArchive}
                 handleEdit={handleEdit}
                 isEdit={isEdit}
+                handleDelete={handleDelete}
               />
             )
           )}

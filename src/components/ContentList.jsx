@@ -7,6 +7,7 @@ const ContentList = ({
   handleArchive,
   handleEdit,
   isEdit,
+  handleDelete,
 }) => {
   return (
     <div className="flex flex-wrap justify-between">
@@ -18,6 +19,7 @@ const ContentList = ({
           handleArchive={handleArchive}
           handleEdit={handleEdit}
           isEdit={isEdit}
+          handleDelete={handleDelete}
         />
       ))}
     </div >
@@ -30,6 +32,7 @@ ContentList.propTypes = {
   handleArchive: PropTypes.func.isRequired,
   handleEdit: PropTypes.func,
   isEdit: PropTypes.bool,
+  handleDelete: PropTypes.func.isRequired,
 }
 
 export default ContentList

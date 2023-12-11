@@ -7,6 +7,7 @@ const ArchiveList = ({
   handleRestore,
   handleEdit,
   isEdit,
+  handleDelete,
 }) => {
   return (
     <div className="flex flex-wrap justify-between">
@@ -18,6 +19,7 @@ const ArchiveList = ({
           handleRestore={handleRestore}
           handleEdit={handleEdit}
           isEdit={isEdit}
+          handleDelete={handleDelete}
         />
       ))}
     </div >
@@ -30,6 +32,7 @@ ArchiveList.propTypes = {
   handleEdit: PropTypes.func.isRequired,
   handleRestore: PropTypes.func,
   isEdit: PropTypes.bool,
+  handleDelete: PropTypes.func.isRequired,
 }
 
 export default ArchiveList

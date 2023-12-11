@@ -14,6 +14,7 @@ const Card = ({
   handleRestore,
   handleEdit,
   isEdit,
+  handleDelete,
 }) => {
   const [isReadMoreDisabled, setIsReadMoreDisabled] = useState(false)
   const maxWords = 30
@@ -54,6 +55,10 @@ const Card = ({
 
   const handleClickEdit = () => {
     handleEdit(note.id)
+  }
+
+  const handleClickDelete = () => {
+    handleDelete(note.id)
   }
 
   return (
@@ -104,6 +109,7 @@ const Card = ({
           <div className="tooltip tooltip-bottom" data-tip="delete">
             <Button
               variant="primary"
+              onClick={handleClickDelete}
               className="hover:bg-[#D9DDDA] hover:text-[#FF1E00] hover:border-[#FF1E00]"
             >
               <FiTrash size={16} />
@@ -122,6 +128,7 @@ Card.propTypes = {
   handleEdit: PropTypes.func.isRequired,
   handleRestore: PropTypes.func,
   isEdit: PropTypes.bool,
+  handleDelete: PropTypes.func.isRequired,
 }
 
 export default Card
