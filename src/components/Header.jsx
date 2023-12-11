@@ -12,14 +12,14 @@ const Header = ({ searchQuery, handleSearch }) => {
       setIsMobile(window.innerWidth <= 768)
     }
 
-    handleResize();
+    handleResize()
 
     window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('resize', handleResize)
-    };
-  }, []);
+    }
+  }, [])
 
   return (
     <header className="bg-custom-primary py-4 sticky top-0 left-0 z-50 shadow-sm bg-opacity-50 lg:bg-opacity-20 backdrop-filter backdrop-blur-md backdrop-saturate-100">
@@ -46,7 +46,7 @@ const Header = ({ searchQuery, handleSearch }) => {
             <div>
               <p className="text-2xl text-custom-txt tracking-tighter font-medium">per.<span className="text-custom-btn-secondary">notes</span></p>
             </div>
-            <div className="w-2/5">
+            <div className="w-1/3 -ml-16">
               <SearchBar
                 searchQuery={searchQuery}
                 handleSearch={handleSearch}
@@ -56,6 +56,7 @@ const Header = ({ searchQuery, handleSearch }) => {
               <FiMoon size={25} />
             </div>
           </div>
+
         )}
       </Container>
     </header>
