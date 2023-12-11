@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import Swal from 'sweetalert2'
-import Container from "./Container"
-import ContentHeader from "./ContentHeader"
-import ContentList from "./ContentList"
-import { getInitialData } from '../utils/getInitialData'
-import { showFormattedDate } from '../utils/showFormattedDate'
-import EmptyData from './EmptyData'
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
+import Container from './Container';
+import ContentHeader from './ContentHeader';
+import ContentList from './ContentList';
+import { getInitialData } from '../utils/getInitialData';
+import { showFormattedDate } from '../utils/showFormattedDate';
+import EmptyData from './EmptyData';
 
 const Content = ({ searchQuery }) => {
   const initialData = () => {
@@ -15,54 +15,58 @@ const Content = ({ searchQuery }) => {
     const dataWithUpdatedAt = data.map((note) => ({
       ...note,
       updatedAt: new Date().toString(),
-    }))
+    }));
 
-    return dataWithUpdatedAt
-  }
+    return dataWithUpdatedAt;
+  };
 
-  const [data, setData] = useState(initialData() || [])
-  const [notes, setNotes] = useState([])
-  const [searchResults, setSearchResults] = useState([])
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [isArchive, setIsArchive] = useState(false)
-  const [archivedNotes, setArchivedNotes] = useState([])
-  const [isEdit, setIsEdit] = useState(false)
-  const [editedNoteId, setEditedNoteId] = useState(null)
+  const [data, setData] = useState(initialData() || []);
+  const [notes, setNotes] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isArchive, setIsArchive] = useState(false);
+  const [archivedNotes, setArchivedNotes] = useState([]);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editedNoteId, setEditedNoteId] = useState(null);
   const [formData, setFormData] = useState({
     title: '',
     body: '',
-  })
+  });
 
   useEffect(() => {
-    const nonArchivedNotes = data.filter((note) => !note.archived)
-    const archivedNotes = data.filter((note) => note.archived)
+    const nonArchivedNotes = data.filter((note) => !note.archived);
+    const archivedNotes = data.filter((note) => note.archived);
 
-    setNotes(nonArchivedNotes)
-    setArchivedNotes(archivedNotes)
-  }, [data])
+    setNotes(nonArchivedNotes);
+    setArchivedNotes(archivedNotes);
+  }, [data]);
 
   useEffect(() => {
     if (searchQuery) {
-      const regex = new RegExp(searchQuery, "ig")
+      const regex = new RegExp(searchQuery, 'ig');
 
-      let result = data
+      let result = data;
 
       if (isArchive) {
-        result = data.filter((note) => note.archived && note.title.match(regex));
+        result = data.filter(
+          (note) => note.archived && note.title.match(regex)
+        );
       } else {
-        result = data.filter((note) => !note.archived && note.title.match(regex));
+        result = data.filter(
+          (note) => !note.archived && note.title.match(regex)
+        );
       }
 
-      setSearchResults(result)
+      setSearchResults(result);
     }
-  }, [searchQuery, data, isArchive])
+  }, [searchQuery, data, isArchive]);
 
   const resetForm = () => {
     setFormData({
       title: '',
       body: '',
-    })
-  }
+    });
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -71,20 +75,20 @@ const Content = ({ searchQuery }) => {
       const truncatedTitle = value.substring(0, 50);
       setFormData((prevData) => ({ ...prevData, [name]: truncatedTitle }));
     } else {
-      setFormData((prevData) => ({ ...prevData, [name]: value }))
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
-  }
+  };
 
   const handleSubmit = () => {
     if (isEdit && editedNoteId) {
-      handleUpdate()
+      handleUpdate();
     } else {
-      handleAdd()
+      handleAdd();
     }
-  }
+  };
 
   const handleAdd = () => {
-    const { title, body } = formData
+    const { title, body } = formData;
 
     if (notes.length > 0) {
       const newNote = {
@@ -94,20 +98,20 @@ const Content = ({ searchQuery }) => {
         archived: false,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }
+      };
 
-      setData([newNote, ...data])
-      resetForm()
-      setModalIsOpen(false)
-      alertSuccess('Note has been added!')
+      setData([newNote, ...data]);
+      resetForm();
+      setModalIsOpen(false);
+      alertSuccess('Note has been added!');
     }
-  }
+  };
 
   const handleCancel = () => {
-    resetForm()
-    setModalIsOpen(false)
-    setIsEdit(false)
-  }
+    resetForm();
+    setModalIsOpen(false);
+    setIsEdit(false);
+  };
 
   const handleArchive = (id) => {
     const archivedData = data.map((note) => {
@@ -115,14 +119,14 @@ const Content = ({ searchQuery }) => {
         return {
           ...note,
           archived: true,
-        }
+        };
       }
-      return note
-    })
+      return note;
+    });
 
-    setData(archivedData)
-    alertSuccess('Note has been archived!')
-  }
+    setData(archivedData);
+    alertSuccess('Note has been archived!');
+  };
 
   const handleRestore = (id) => {
     const restoredData = data.map((note) => {
@@ -130,41 +134,41 @@ const Content = ({ searchQuery }) => {
         return {
           ...note,
           archived: false,
-        }
+        };
       }
-      return note
-    })
+      return note;
+    });
 
-    setData(restoredData)
-    alertSuccess('Note has been restored!')
-  }
+    setData(restoredData);
+    alertSuccess('Note has been restored!');
+  };
 
   const handleEdit = (id) => {
-    const noteToEdit = data.find((note) => note.id === id)
+    const noteToEdit = data.find((note) => note.id === id);
 
     if (!noteToEdit) {
-      console.error("Note not found for id:", id)
-      return
+      console.error('Note not found for id:', id);
+      return;
     }
 
-    const { title, body } = noteToEdit
+    const { title, body } = noteToEdit;
 
     if (title && body) {
       setFormData({
         title,
         body,
-      })
+      });
 
-      setModalIsOpen(true)
-      setIsEdit(true)
-      setEditedNoteId(id)
+      setModalIsOpen(true);
+      setIsEdit(true);
+      setEditedNoteId(id);
     } else {
-      console.error("Invalid note data:", noteToEdit)
+      console.error('Invalid note data:', noteToEdit);
     }
-  }
+  };
 
   const handleUpdate = () => {
-    const { title, body } = formData
+    const { title, body } = formData;
 
     if (isEdit && editedNoteId) {
       const updatedData = data.map((note) => {
@@ -174,21 +178,21 @@ const Content = ({ searchQuery }) => {
             title,
             body,
             updatedAt: new Date(),
-          }
-          console.log(updatedNote)
-          return updatedNote
+          };
+          console.log(updatedNote);
+          return updatedNote;
         }
-        return note
-      })
+        return note;
+      });
 
-      setModalIsOpen(false)
-      setIsEdit(false)
-      setEditedNoteId(null)
-      setData(updatedData)
-      resetForm()
-      alertSuccess('Note has been updated!')
+      setModalIsOpen(false);
+      setIsEdit(false);
+      setEditedNoteId(null);
+      setData(updatedData);
+      resetForm();
+      alertSuccess('Note has been updated!');
     }
-  }
+  };
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -203,12 +207,12 @@ const Content = ({ searchQuery }) => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        const selectedData = data.filter((note) => note.id !== id)
-        setData(selectedData)
-        alertSuccess('Note has been deleted!')
+        const selectedData = data.filter((note) => note.id !== id);
+        setData(selectedData);
+        alertSuccess('Note has been deleted!');
       }
-    })
-  }
+    });
+  };
 
   const alertSuccess = (text) => {
     Swal.fire({
@@ -218,8 +222,8 @@ const Content = ({ searchQuery }) => {
       customClass: {
         popup: 'rounded-xl',
       },
-    })
-  }
+    });
+  };
 
   return (
     <section>
@@ -263,28 +267,26 @@ const Content = ({ searchQuery }) => {
             ) : (
               <EmptyData type="emptyArchive" />
             )
+          ) : notes.length > 0 ? (
+            <ContentList
+              notes={notes}
+              showFormattedDate={showFormattedDate}
+              handleArchive={handleArchive}
+              handleEdit={handleEdit}
+              isEdit={isEdit}
+              handleDelete={handleDelete}
+            />
           ) : (
-            notes.length > 0 ? (
-              <ContentList
-                notes={notes}
-                showFormattedDate={showFormattedDate}
-                handleArchive={handleArchive}
-                handleEdit={handleEdit}
-                isEdit={isEdit}
-                handleDelete={handleDelete}
-              />
-            ) : (
-              <EmptyData type="emptyNotes" />
-            )
+            <EmptyData type="emptyNotes" />
           )}
         </Container>
       </div>
     </section>
-  )
-}
+  );
+};
 
 Content.propTypes = {
   searchQuery: PropTypes.string,
-}
+};
 
-export default Content
+export default Content;

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
-import Card from "./Card"
+import PropTypes from 'prop-types';
+import Card from './Card';
 
 const ContentList = ({
   notes,
@@ -22,9 +22,9 @@ const ContentList = ({
           handleDelete={handleDelete}
         />
       ))}
-    </div >
-  )
-}
+    </div>
+  );
+};
 
 ContentList.propTypes = {
   notes: PropTypes.array.isRequired,
@@ -33,6 +33,6 @@ ContentList.propTypes = {
   handleEdit: PropTypes.func,
   isEdit: PropTypes.bool,
   handleDelete: PropTypes.func.isRequired,
-}
+};
 
-export default ContentList
+export default ContentList;

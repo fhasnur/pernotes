@@ -17,17 +17,17 @@ body {
 }
 
 .gradient-bg {
-  background: linear-gradient(to right, #D1DEEE, #E7EDD5);
+  background: linear-gradient(to right, #d1deee, #e7edd5);
 }
 
 .swal2-confirm {
   border-radius: 30px !important;
-  background-color: #2657ED !important;
+  background-color: #2657ed !important;
 }
 
 .swal2-cancel {
   border-radius: 30px !important;
-  background-color: #EB5353 !important;
+  background-color: #eb5353 !important;
 }
 
 .swal2-confirm:hover {
@@ -41,12 +41,12 @@ body {
 @media only screen and (max-width: 600px) {
   .swal2-confirm {
     border-radius: 30px !important;
-    background-color: #2657ED !important;
+    background-color: #2657ed !important;
   }
 
   .swal2-cancel {
     border-radius: 30px !important;
-    background-color: #EB5353 !important;
+    background-color: #eb5353 !important;
   }
 }
 

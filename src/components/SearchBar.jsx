@@ -1,12 +1,7 @@
-import PropTypes from 'prop-types'
-import { FiSearch } from "react-icons/fi"
+import PropTypes from 'prop-types';
+import { FiSearch } from 'react-icons/fi';
 
-const SearchBar = ({
-  className,
-  searchQuery,
-  handleSearch,
-}) => {
-
+const SearchBar = ({ className, searchQuery, handleSearch }) => {
   return (
     <div className="relative w-full">
       <input
@@ -20,13 +15,13 @@ const SearchBar = ({
         <FiSearch className="text-gray-400" />
       </div>
     </div>
-  )
-}
+  );
+};
 
 SearchBar.propTypes = {
   className: PropTypes.string,
   searchQuery: PropTypes.string,
   handleSearch: PropTypes.func.isRequired,
-}
+};
 
-export default SearchBar
+export default SearchBar;

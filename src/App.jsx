@@ -1,25 +1,20 @@
-import { useState } from "react"
-import Header from "./components/Header"
-import Content from "./components/Content"
+import { useState } from 'react';
+import Header from './components/Header';
+import Content from './components/Content';
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearch = (query) => setSearchQuery(query)
+  const handleSearch = (query) => setSearchQuery(query);
 
   return (
     <>
-      <Header
-        searchQuery={searchQuery}
-        handleSearch={handleSearch}
-      />
+      <Header searchQuery={searchQuery} handleSearch={handleSearch} />
       <main>
-        <Content
-          searchQuery={searchQuery}
-        />
+        <Content searchQuery={searchQuery} />
       </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

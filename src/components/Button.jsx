@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const Button = ({ children, onClick, className, disabled, variant }) => {
   const getVariantClass = () => {
     switch (variant) {
       case 'primary':
-        return 'bg-custom-btn-primary text-custom-txt-primary'
+        return 'bg-custom-btn-primary text-custom-txt-primary';
       case 'secondary':
-        return 'bg-custom-btn-secondary text-custom-txt-secondary'
+        return 'bg-custom-btn-secondary text-custom-txt-secondary';
       case 'tertiary':
-        return 'bg-custom-btn-tertiary text-custom-txt-secondary'
+        return 'bg-custom-btn-tertiary text-custom-txt-secondary';
       case 'danger':
-        return 'bg-custom-btn-danger text-custom-txt-secondary'
+        return 'bg-custom-btn-danger text-custom-txt-secondary';
       default:
-        return ''
+        return '';
     }
-  }
+  };
 
   return (
     <button
@@ -24,8 +24,8 @@ const Button = ({ children, onClick, className, disabled, variant }) => {
     >
       {children}
     </button>
-  )
-}
+  );
+};
 
 Button.propTypes = {
   children: PropTypes.node,
@@ -33,6 +33,6 @@ Button.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   variant: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'danger']),
-}
+};
 
-export default Button
+export default Button;

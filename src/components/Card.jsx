@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import Button from "./Button"
-import { FaRegNoteSticky } from "react-icons/fa6"
-import { RiInboxArchiveLine } from "react-icons/ri"
-import { FiEdit, FiTrash } from "react-icons/fi"
-import { LuArchiveRestore } from "react-icons/lu"
-import Swal from 'sweetalert2'
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Button from './Button';
+import { FaRegNoteSticky } from 'react-icons/fa6';
+import { RiInboxArchiveLine } from 'react-icons/ri';
+import { FiEdit, FiTrash } from 'react-icons/fi';
+import { LuArchiveRestore } from 'react-icons/lu';
+import Swal from 'sweetalert2';
 
 const Card = ({
   note,
@@ -16,50 +16,51 @@ const Card = ({
   isEdit,
   handleDelete,
 }) => {
-  const [isReadMoreDisabled, setIsReadMoreDisabled] = useState(false)
-  const maxWords = 30
+  const [isReadMoreDisabled, setIsReadMoreDisabled] = useState(false);
+  const maxWords = 30;
 
   useEffect(() => {
-    setIsReadMoreDisabled(countWords(note.body) <= maxWords)
-  }, [note.body])
+    setIsReadMoreDisabled(countWords(note.body) <= maxWords);
+  }, [note.body]);
 
   const countWords = (text) => {
-    return text.split(/\s+/).filter((word) => word !== '').length
-  }
+    return text.split(/\s+/).filter((word) => word !== '').length;
+  };
 
   const handleReadMore = () => {
     const formattedBody = note.body.replace(/\n/g, '<br>');
 
     Swal.fire({
       title: note.title,
-      html:
-        `<div class="max-h-96 overflow-y-auto text-left">${formattedBody}</div>
-         <p class="font-light text-base mt-6">${showFormattedDate(isEdit ? note.updatedAt : note.createdAt)}</p>`,
+      html: `<div class="max-h-96 overflow-y-auto text-left">${formattedBody}</div>
+         <p class="font-light text-base mt-6">${showFormattedDate(
+           isEdit ? note.updatedAt : note.createdAt
+         )}</p>`,
       confirmButtonText: 'Close',
       customClass: {
         popup: 'rounded-xl',
         scrollbar: 'swiper-scrollbar',
-        container: 'swiper-container'
+        container: 'swiper-container',
       },
-      scrollbarTarget: '.swiper-scrollbar'
-    })
-  }
+      scrollbarTarget: '.swiper-scrollbar',
+    });
+  };
 
   const handleClickArchive = () => {
     if (note.archived) {
-      handleRestore(note.id)
+      handleRestore(note.id);
     } else {
-      handleArchive(note.id)
+      handleArchive(note.id);
     }
-  }
+  };
 
   const handleClickEdit = () => {
-    handleEdit(note.id)
-  }
+    handleEdit(note.id);
+  };
 
   const handleClickDelete = () => {
-    handleDelete(note.id)
-  }
+    handleDelete(note.id);
+  };
 
   return (
     <div className="flex-grow max-w-sm my-2overflow-hidden mb-5">
@@ -69,7 +70,9 @@ const Card = ({
       >
         <div>
           <h2 className="font-medium text-2xl">{note.title}</h2>
-          <h5 className="font-light text-sm ">{showFormattedDate(isEdit ? note.updatedAt : note.createdAt)}</h5>
+          <h5 className="font-light text-sm ">
+            {showFormattedDate(isEdit ? note.updatedAt : note.createdAt)}
+          </h5>
         </div>
         <div>
           <p className="my-6 line-clamp-6">{note.body}</p>
@@ -84,7 +87,10 @@ const Card = ({
             <FaRegNoteSticky size={15} />
             Read more
           </Button>
-          <div className="tooltip tooltip-bottom" data-tip={note.archived ? "restore" : "archive"}>
+          <div
+            className="tooltip tooltip-bottom"
+            data-tip={note.archived ? 'restore' : 'archive'}
+          >
             <Button
               variant="primary"
               onClick={handleClickArchive}
@@ -117,9 +123,9 @@ const Card = ({
           </div>
         </div>
       </div>
-    </div >
-  )
-}
+    </div>
+  );
+};
 
 Card.propTypes = {
   note: PropTypes.object.isRequired,
@@ -129,6 +135,6 @@ Card.propTypes = {
   handleRestore: PropTypes.func,
   isEdit: PropTypes.bool,
   handleDelete: PropTypes.func.isRequired,
-}
+};
 
-export default Card
+export default Card;

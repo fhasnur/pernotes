@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const EmptyData = ({ type }) => {
   const messages = {
@@ -11,11 +11,11 @@ const EmptyData = ({ type }) => {
     <div className="flex items-center justify-center mt-36 lg:mt-56">
       <p className="text-xl">{messages[type]}</p>
     </div>
-  )
-}
+  );
+};
 
 EmptyData.propTypes = {
   type: PropTypes.string,
-}
+};
 
-export default EmptyData
+export default EmptyData;

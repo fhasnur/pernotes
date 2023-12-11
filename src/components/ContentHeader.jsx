@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types'
-import Button from './Button'
-import { FiPlusCircle } from 'react-icons/fi'
-import { MdOutlineArchive } from 'react-icons/md'
-import { CgNotes } from "react-icons/cg"
-import SweetAlert from 'react-bootstrap-sweetalert'
-import Modal from './Modal'
+import PropTypes from 'prop-types';
+import Button from './Button';
+import { FiPlusCircle } from 'react-icons/fi';
+import { MdOutlineArchive } from 'react-icons/md';
+import { CgNotes } from 'react-icons/cg';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import Modal from './Modal';
 
 const ContentHeader = ({
   formData,
@@ -18,7 +18,7 @@ const ContentHeader = ({
   handleUpdate,
   isEdit,
 }) => {
-  const title = isEdit ? 'Edit Notes' : 'Add Notes'
+  const title = isEdit ? 'Edit Notes' : 'Add Notes';
 
   return (
     <div className="flex items-center mt-28 mb-8">
@@ -29,7 +29,11 @@ const ContentHeader = ({
       </div>
       <div className="flex-none">
         {!isArchive && (
-          <Button onClick={() => setModalIsOpen(true)} variant="secondary" className="ml-2 px-5 py-3 hover:bg-[#3261F2]">
+          <Button
+            onClick={() => setModalIsOpen(true)}
+            variant="secondary"
+            className="ml-2 px-5 py-3 hover:bg-[#3261F2]"
+          >
             <FiPlusCircle size={17} />
             Add notes
           </Button>
@@ -37,7 +41,9 @@ const ContentHeader = ({
         <Button
           onClick={() => setIsArchive(!isArchive)}
           variant={isArchive ? 'secondary' : 'tertiary'}
-          className={`ml-2 px-5 py-3 ${isArchive ? 'hover:bg-[#3261F2]' : 'hover:bg-[#242B41]'}`}
+          className={`ml-2 px-5 py-3 ${
+            isArchive ? 'hover:bg-[#3261F2]' : 'hover:bg-[#242B41]'
+          }`}
         >
           {isArchive ? (
             <>
@@ -61,7 +67,6 @@ const ContentHeader = ({
           showConfirm={false}
           className="rounded-3xl"
         >
-
           <Modal
             formData={formData}
             handleChange={handleChange}
@@ -72,9 +77,9 @@ const ContentHeader = ({
           />
         </SweetAlert>
       </div>
-    </div >
-  )
-}
+    </div>
+  );
+};
 
 ContentHeader.propTypes = {
   formData: PropTypes.object.isRequired,
@@ -87,6 +92,6 @@ ContentHeader.propTypes = {
   setIsArchive: PropTypes.func.isRequired,
   handleUpdate: PropTypes.func.isRequired,
   isEdit: PropTypes.bool.isRequired,
-}
+};
 
-export default ContentHeader
+export default ContentHeader;
