@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react"
+import PropTypes from 'prop-types'
 import Container from "./Container"
 import { FiMoon } from "react-icons/fi"
 import SearchBar from "./SearchBar"
 
-const Header = () => {
+const Header = ({ searchQuery, handleSearch }) => {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768)
-    };
+    }
 
     handleResize();
 
@@ -34,7 +35,10 @@ const Header = () => {
               </div>
             </div>
             <div className="mt-4" >
-              <SearchBar />
+              <SearchBar
+                searchQuery={searchQuery}
+                handleSearch={handleSearch}
+              />
             </div>
           </>
         ) : (
@@ -43,7 +47,10 @@ const Header = () => {
               <p className="text-2xl text-custom-txt tracking-tighter font-medium">per.<span className="text-custom-btn-secondary">notes</span></p>
             </div>
             <div className="w-2/5">
-              <SearchBar />
+              <SearchBar
+                searchQuery={searchQuery}
+                handleSearch={handleSearch}
+              />
             </div>
             <div className="btn btn-link p-0 text-custom-txt-primary">
               <FiMoon size={25} />
@@ -53,6 +60,11 @@ const Header = () => {
       </Container>
     </header>
   )
+}
+
+Header.propTypes = {
+  searchQuery: PropTypes.string,
+  handleSearch: PropTypes.func,
 }
 
 export default Header

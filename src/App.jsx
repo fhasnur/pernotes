@@ -1,13 +1,22 @@
+import { useState } from "react"
 import Header from "./components/Header"
 import Content from "./components/Content"
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const handleSearch = (query) => setSearchQuery(query)
 
   return (
     <>
-      <Header />
+      <Header
+        searchQuery={searchQuery}
+        handleSearch={handleSearch}
+      />
       <main>
-        <Content />
+        <Content
+          searchQuery={searchQuery}
+        />
       </main>
     </>
   )

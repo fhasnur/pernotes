@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import Swal from 'sweetalert2'
 import Container from "./Container"
 import ContentHeader from "./ContentHeader"
 import ContentList from "./ContentList"
 import { getInitialData } from '../utils/getInitialData'
 import { showFormattedDate } from '../utils/showFormattedDate'
-import ArchiveList from "./ArchiveList"
+import EmptyData from './EmptyData'
 
-const Content = () => {
+const Content = ({ searchQuery }) => {
   const initialData = () => {
     const data = getInitialData();
 
@@ -21,6 +22,7 @@ const Content = () => {
 
   const [data, setData] = useState(initialData() || [])
   const [notes, setNotes] = useState([])
+  const [searchResults, setSearchResults] = useState([])
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [isArchive, setIsArchive] = useState(false)
   const [archivedNotes, setArchivedNotes] = useState([])
@@ -38,6 +40,22 @@ const Content = () => {
     setNotes(nonArchivedNotes)
     setArchivedNotes(archivedNotes)
   }, [data])
+
+  useEffect(() => {
+    if (searchQuery) {
+      const regex = new RegExp(searchQuery, "ig")
+
+      let result = data
+
+      if (isArchive) {
+        result = data.filter((note) => note.archived && note.title.match(regex));
+      } else {
+        result = data.filter((note) => !note.archived && note.title.match(regex));
+      }
+
+      setSearchResults(result)
+    }
+  }, [searchQuery, data, isArchive])
 
   const resetForm = () => {
     setFormData({
@@ -219,13 +237,22 @@ const Content = () => {
             handleUpdate={handleUpdate}
             isEdit={isEdit}
           />
-          {isArchive ? (
-            archivedNotes.length === 0 ? (
-              <div className="flex justify-center">
-                <p>Archive is empty.</p>
-              </div>
+          {searchQuery ? (
+            searchResults.length > 0 ? (
+              <ContentList
+                notes={searchResults}
+                showFormattedDate={showFormattedDate}
+                handleArchive={handleArchive}
+                handleEdit={handleEdit}
+                isEdit={isEdit}
+                handleDelete={handleDelete}
+              />
             ) : (
-              <ArchiveList
+              <EmptyData type="notFound" />
+            )
+          ) : isArchive ? (
+            archivedNotes.length > 0 ? (
+              <ContentList
                 notes={archivedNotes}
                 showFormattedDate={showFormattedDate}
                 handleRestore={handleRestore}
@@ -233,13 +260,11 @@ const Content = () => {
                 isEdit={isEdit}
                 handleDelete={handleDelete}
               />
+            ) : (
+              <EmptyData type="emptyArchive" />
             )
           ) : (
-            notes.length === 0 ? (
-              <div className="flex justify-center">
-                <p>Notes is empty.</p>
-              </div>
-            ) : (
+            notes.length > 0 ? (
               <ContentList
                 notes={notes}
                 showFormattedDate={showFormattedDate}
@@ -248,12 +273,18 @@ const Content = () => {
                 isEdit={isEdit}
                 handleDelete={handleDelete}
               />
+            ) : (
+              <EmptyData type="emptyNotes" />
             )
           )}
         </Container>
       </div>
     </section>
   )
+}
+
+Content.propTypes = {
+  searchQuery: PropTypes.string,
 }
 
 export default Content
