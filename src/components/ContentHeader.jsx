@@ -11,11 +11,15 @@ const ContentHeader = ({
   modalIsOpen,
   setModalIsOpen,
   handleChange,
-  handleAdd,
+  handleSubmit,
   handleCancel,
   isArchive,
   setIsArchive,
+  handleUpdate,
+  isEdit,
 }) => {
+  const title = isEdit ? 'Edit Notes' : 'Add Notes'
+
   return (
     <div className="flex items-center mt-28 mb-8">
       <div className="flex-1">
@@ -51,8 +55,8 @@ const ContentHeader = ({
       <div className="rounded-xl">
         <SweetAlert
           show={modalIsOpen}
-          title="Add Notes"
-          onConfirm={handleAdd}
+          title={title}
+          onConfirm={handleSubmit}
           onCancel={handleCancel}
           showConfirm={false}
           className="rounded-3xl"
@@ -61,12 +65,14 @@ const ContentHeader = ({
           <Modal
             formData={formData}
             handleChange={handleChange}
-            handleAdd={handleAdd}
+            handleSubmit={handleSubmit}
             handleCancel={handleCancel}
+            handleUpdate={handleUpdate}
+            isEdit={isEdit}
           />
         </SweetAlert>
       </div>
-    </div>
+    </div >
   )
 }
 
@@ -75,10 +81,12 @@ ContentHeader.propTypes = {
   modalIsOpen: PropTypes.bool.isRequired,
   setModalIsOpen: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  handleAdd: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
   isArchive: PropTypes.bool.isRequired,
   setIsArchive: PropTypes.func.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool.isRequired,
 }
 
 export default ContentHeader

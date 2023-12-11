@@ -3,12 +3,20 @@ import Button from './Button'
 
 const Modal = ({
   formData,
-  handleAdd,
+  handleSubmit,
   handleCancel,
-  handleChange
+  handleChange,
+  handleUpdate,
+  isEdit,
 }) => {
+
+  const handleSubmitForm = (event) => {
+    event.preventDefault()
+    isEdit ? handleUpdate() : handleSubmit()
+  };
+
   return (
-    <form onSubmit={handleAdd}>
+    <form onSubmit={handleSubmitForm}>
       <div className="relative">
         <label id="title" className="absolute text-md font-semibold top-0 left-0 mt-1 text-gray-500">Title</label>
         <input
@@ -33,7 +41,9 @@ const Modal = ({
         />
       </div>
       <div className="mt-6 mb-2">
-        <Button variant="secondary" className="hover:bg-[#3261F2]">Add</Button>
+        <Button variant="secondary" className="hover:bg-[#3261F2]">
+          {isEdit ? 'Save' : 'Add'}
+        </Button>
         <Button variant="danger" className="ml-2 hover:bg-[#ff2f2f]" onClick={handleCancel}>Cancel</Button>
       </div>
     </form>
@@ -43,8 +53,10 @@ const Modal = ({
 Modal.propTypes = {
   formData: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
-  handleAdd: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool.isRequired,
 }
 
 export default Modal

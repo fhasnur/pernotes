@@ -12,6 +12,8 @@ const Card = ({
   showFormattedDate,
   handleArchive,
   handleRestore,
+  handleEdit,
+  isEdit,
 }) => {
   const [isReadMoreDisabled, setIsReadMoreDisabled] = useState(false)
   const maxWords = 30
@@ -31,7 +33,7 @@ const Card = ({
       title: note.title,
       html:
         `<div class="max-h-96 overflow-y-auto text-left">${formattedBody}</div>
-         <p class="font-light text-base mt-6">${showFormattedDate(note.createdAt)}</p>`,
+         <p class="font-light text-base mt-6">${showFormattedDate(isEdit ? note.updatedAt : note.createdAt)}</p>`,
       confirmButtonText: 'Close',
       customClass: {
         popup: 'rounded-xl',
@@ -50,6 +52,10 @@ const Card = ({
     }
   }
 
+  const handleClickEdit = () => {
+    handleEdit(note.id)
+  }
+
   return (
     <div className="flex-grow max-w-sm my-2overflow-hidden mb-5">
       <div
@@ -58,7 +64,7 @@ const Card = ({
       >
         <div>
           <h2 className="font-medium text-2xl">{note.title}</h2>
-          <h5 className="font-light text-sm ">{showFormattedDate(note.createdAt)}</h5>
+          <h5 className="font-light text-sm ">{showFormattedDate(isEdit ? note.updatedAt : note.createdAt)}</h5>
         </div>
         <div>
           <p className="my-6 line-clamp-6">{note.body}</p>
@@ -89,6 +95,7 @@ const Card = ({
           <div className="tooltip tooltip-bottom" data-tip="edit">
             <Button
               variant="primary"
+              onClick={handleClickEdit}
               className="hover:bg-[#D9DDDA] hover:text-[#279EFF] hover:border-[#279EFF]"
             >
               <FiEdit size={16} />
@@ -111,8 +118,10 @@ const Card = ({
 Card.propTypes = {
   note: PropTypes.object.isRequired,
   showFormattedDate: PropTypes.func.isRequired,
-  handleArchive: PropTypes.func.isRequired,
-  handleRestore: PropTypes.func.isRequired,
+  handleArchive: PropTypes.func,
+  handleEdit: PropTypes.func.isRequired,
+  handleRestore: PropTypes.func,
+  isEdit: PropTypes.bool,
 }
 
 export default Card

@@ -8,15 +8,28 @@ import { showFormattedDate } from '../utils/showFormattedDate'
 import ArchiveList from "./ArchiveList"
 
 const Content = () => {
-  const [data, setData] = useState(getInitialData() || [])
+  const initialData = () => {
+    const data = getInitialData();
+
+    const dataWithUpdatedAt = data.map((note) => ({
+      ...note,
+      updatedAt: new Date().toString(),
+    }))
+
+    return dataWithUpdatedAt
+  }
+
+  const [data, setData] = useState(initialData() || [])
   const [notes, setNotes] = useState([])
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [isArchive, setIsArchive] = useState(false)
+  const [archivedNotes, setArchivedNotes] = useState([])
+  const [isEdit, setIsEdit] = useState(false)
+  const [editedNoteId, setEditedNoteId] = useState(null)
   const [formData, setFormData] = useState({
     title: '',
     body: '',
   })
-  const [isArchive, setIsArchive] = useState(false)
-  const [archivedNotes, setArchivedNotes] = useState([])
 
   useEffect(() => {
     const nonArchivedNotes = data.filter((note) => !note.archived)
@@ -26,6 +39,13 @@ const Content = () => {
     setArchivedNotes(archivedNotes)
   }, [data])
 
+  const resetForm = () => {
+    setFormData({
+      title: '',
+      body: '',
+    })
+  }
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -34,6 +54,14 @@ const Content = () => {
       setFormData((prevData) => ({ ...prevData, [name]: truncatedTitle }));
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }))
+    }
+  }
+
+  const handleSubmit = () => {
+    if (isEdit && editedNoteId) {
+      handleUpdate()
+    } else {
+      handleAdd()
     }
   }
 
@@ -49,11 +77,9 @@ const Content = () => {
         createdAt: new Date(),
         updatedAt: new Date(),
       }
+
       setData([newNote, ...data])
-      setFormData({
-        title: '',
-        body: '',
-      })
+      resetForm()
       setModalIsOpen(false)
 
       Swal.fire({
@@ -68,22 +94,23 @@ const Content = () => {
   }
 
   const handleCancel = () => {
+    resetForm()
     setModalIsOpen(false)
+    setIsEdit(false)
   }
 
   const handleArchive = (id) => {
-    const updatedData = data.map((note) => {
+    const archivedData = data.map((note) => {
       if (note.id === id) {
         return {
           ...note,
           archived: true,
-          updatedAt: new Date(),
         }
       }
       return note
     })
 
-    setData(updatedData)
+    setData(archivedData)
 
     Swal.fire({
       icon: 'success',
@@ -96,18 +123,17 @@ const Content = () => {
   }
 
   const handleRestore = (id) => {
-    const updatedData = data.map((note) => {
+    const restoredData = data.map((note) => {
       if (note.id === id) {
         return {
           ...note,
           archived: false,
-          updatedAt: new Date(),
-        };
+        }
       }
       return note
-    });
+    })
 
-    setData(updatedData)
+    setData(restoredData)
 
     Swal.fire({
       icon: 'success',
@@ -119,6 +145,65 @@ const Content = () => {
     })
   }
 
+  const handleEdit = (id) => {
+    const noteToEdit = data.find((note) => note.id === id)
+
+    if (!noteToEdit) {
+      console.error("Note not found for id:", id)
+      return
+    }
+
+    const { title, body } = noteToEdit
+
+    if (title && body) {
+      setFormData({
+        title,
+        body,
+      })
+
+      setModalIsOpen(true)
+      setIsEdit(true)
+      setEditedNoteId(id)
+    } else {
+      console.error("Invalid note data:", noteToEdit)
+    }
+  }
+
+  const handleUpdate = () => {
+    const { title, body } = formData
+
+    if (isEdit && editedNoteId) {
+      const updatedData = data.map((note) => {
+        if (note.id === editedNoteId) {
+          const updatedNote = {
+            ...note,
+            title,
+            body,
+            updatedAt: new Date(),
+          }
+          console.log(updatedNote)
+          return updatedNote
+        }
+        return note
+      })
+
+      setModalIsOpen(false)
+      setIsEdit(false)
+      setEditedNoteId(null)
+      setData(updatedData)
+      resetForm()
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Note updated.',
+        customClass: {
+          popup: 'rounded-xl',
+        },
+      })
+    }
+  }
+
   return (
     <section>
       <div className="flex min-h-screen gradient-bg -mt-20">
@@ -128,10 +213,12 @@ const Content = () => {
             setModalIsOpen={setModalIsOpen}
             formData={formData}
             handleChange={handleChange}
-            handleAdd={handleAdd}
+            handleSubmit={handleSubmit}
             handleCancel={handleCancel}
             isArchive={isArchive}
             setIsArchive={setIsArchive}
+            handleUpdate={handleUpdate}
+            isEdit={isEdit}
           />
           {isArchive ? (
             archivedNotes.length === 0 ? (
@@ -143,6 +230,8 @@ const Content = () => {
                 notes={archivedNotes}
                 showFormattedDate={showFormattedDate}
                 handleRestore={handleRestore}
+                handleEdit={handleEdit}
+                isEdit={isEdit}
               />
             )
           ) : (
@@ -155,6 +244,8 @@ const Content = () => {
                 notes={notes}
                 showFormattedDate={showFormattedDate}
                 handleArchive={handleArchive}
+                handleEdit={handleEdit}
+                isEdit={isEdit}
               />
             )
           )}
