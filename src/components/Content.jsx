@@ -81,15 +81,7 @@ const Content = () => {
       setData([newNote, ...data])
       resetForm()
       setModalIsOpen(false)
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Success!',
-        text: 'Note added.',
-        customClass: {
-          popup: 'rounded-xl',
-        },
-      })
+      alertSuccess('Note has been added!')
     }
   }
 
@@ -111,15 +103,7 @@ const Content = () => {
     })
 
     setData(archivedData)
-
-    Swal.fire({
-      icon: 'success',
-      title: 'Success!',
-      text: 'Note archived.',
-      customClass: {
-        popup: 'rounded-xl',
-      },
-    })
+    alertSuccess('Note has been archived!')
   }
 
   const handleRestore = (id) => {
@@ -134,15 +118,7 @@ const Content = () => {
     })
 
     setData(restoredData)
-
-    Swal.fire({
-      icon: 'success',
-      title: 'Success!',
-      text: 'Note restored.',
-      customClass: {
-        popup: 'rounded-xl',
-      },
-    })
+    alertSuccess('Note has been restored!')
   }
 
   const handleEdit = (id) => {
@@ -192,15 +168,7 @@ const Content = () => {
       setEditedNoteId(null)
       setData(updatedData)
       resetForm()
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Success!',
-        text: 'Note updated.',
-        customClass: {
-          popup: 'rounded-xl',
-        },
-      })
+      alertSuccess('Note has been updated!')
     }
   }
 
@@ -219,16 +187,19 @@ const Content = () => {
       if (result.isConfirmed) {
         const selectedData = data.filter((note) => note.id !== id)
         setData(selectedData)
-
-        Swal.fire({
-          icon: 'success',
-          title: 'Success!',
-          text: 'Note deleted.',
-          customClass: {
-            popup: 'rounded-xl',
-          },
-        })
+        alertSuccess('Note has been deleted!')
       }
+    })
+  }
+
+  const alertSuccess = (text) => {
+    Swal.fire({
+      icon: 'success',
+      title: 'Success',
+      text: text,
+      customClass: {
+        popup: 'rounded-xl',
+      },
     })
   }
 
