@@ -6,6 +6,8 @@ import ContentHeader from './ContentHeader';
 import ContentList from './ContentList';
 import { getInitialData } from '../utils/getInitialData';
 import { showFormattedDate } from '../utils/showFormattedDate';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import EmptyData from './EmptyData';
 
 const Content = ({ searchQuery }) => {
@@ -102,7 +104,7 @@ const Content = ({ searchQuery }) => {
     setData([newNote, ...data]);
     resetForm();
     setModalIsOpen(false);
-    alertSuccess('Note has been added!');
+    toast.success('Note has been added!');
   };
 
   const handleCancel = () => {
@@ -123,7 +125,7 @@ const Content = ({ searchQuery }) => {
     });
 
     setData(archivedData);
-    alertSuccess('Note has been archived!');
+    toast.success('Note has been archived!');
   };
 
   const handleRestore = (id) => {
@@ -138,7 +140,7 @@ const Content = ({ searchQuery }) => {
     });
 
     setData(restoredData);
-    alertSuccess('Note has been restored!');
+    toast.success('Note has been restored!');
   };
 
   const handleEdit = (id) => {
@@ -188,7 +190,7 @@ const Content = ({ searchQuery }) => {
       setEditedNoteId(null);
       setData(updatedData);
       resetForm();
-      alertSuccess('Note has been updated!');
+      toast.success('Note has been updated!');
     }
   };
 
@@ -207,19 +209,8 @@ const Content = ({ searchQuery }) => {
       if (result.isConfirmed) {
         const selectedData = data.filter((note) => note.id !== id);
         setData(selectedData);
-        alertSuccess('Note has been deleted!');
+        toast.success('Note has been deleted!');
       }
-    });
-  };
-
-  const alertSuccess = (text) => {
-    Swal.fire({
-      icon: 'success',
-      title: 'Success',
-      text: text,
-      customClass: {
-        popup: 'rounded-xl',
-      },
     });
   };
 
@@ -277,6 +268,17 @@ const Content = ({ searchQuery }) => {
           ) : (
             <EmptyData type="emptyNotes" />
           )}
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </Container>
       </div>
     </section>
