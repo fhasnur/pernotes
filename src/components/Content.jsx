@@ -90,21 +90,19 @@ const Content = ({ searchQuery }) => {
   const handleAdd = () => {
     const { title, body } = formData;
 
-    if (notes.length > 0) {
-      const newNote = {
-        id: +new Date(),
-        title,
-        body,
-        archived: false,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
+    const newNote = {
+      id: +new Date(),
+      title,
+      body,
+      archived: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
 
-      setData([newNote, ...data]);
-      resetForm();
-      setModalIsOpen(false);
-      alertSuccess('Note has been added!');
-    }
+    setData([newNote, ...data]);
+    resetForm();
+    setModalIsOpen(false);
+    alertSuccess('Note has been added!');
   };
 
   const handleCancel = () => {
