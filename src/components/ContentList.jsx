@@ -5,6 +5,7 @@ const ContentList = ({
   notes,
   showFormattedDate,
   handleArchive,
+  handleRestore,
   handleEdit,
   isEdit,
   handleDelete,
@@ -17,6 +18,7 @@ const ContentList = ({
           note={note}
           showFormattedDate={showFormattedDate}
           handleArchive={handleArchive}
+          handleRestore={handleRestore}
           handleEdit={handleEdit}
           isEdit={isEdit}
           handleDelete={handleDelete}
@@ -30,6 +32,7 @@ ContentList.propTypes = {
   notes: PropTypes.array.isRequired,
   showFormattedDate: PropTypes.func.isRequired,
   handleArchive: PropTypes.func.isRequired,
+  handleRestore: PropTypes.func,
   handleEdit: PropTypes.func,
   isEdit: PropTypes.bool,
   handleDelete: PropTypes.func.isRequired,
