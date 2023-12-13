@@ -34,8 +34,8 @@ const Card = ({
       title: note.title,
       html: `<div class="max-h-96 overflow-y-auto text-left">${formattedBody}</div>
          <p class="font-light text-base mt-6">${showFormattedDate(
-           isEdit ? note.updatedAt : note.createdAt
-         )}</p>`,
+        isEdit ? note.updatedAt : note.createdAt
+      )}</p>`,
       confirmButtonText: 'Close',
       customClass: {
         popup: 'rounded-xl',
@@ -77,11 +77,11 @@ const Card = ({
         <div>
           <p className="my-6 line-clamp-6">{note.body}</p>
         </div>
-        <div className="flex items-center justify-between mt-1 mb-1">
+        <div className="flex items-center justify-between mt-1 mb-1 ">
           <Button
             variant="primary"
             onClick={handleReadMore}
-            className="w-1/2 font-normal lg:-ml-1 hover:bg-[#D9DDDA] hover:text-custom-btn-secondary hover:border-custom-btn-secondary"
+            className="w-1/2 font-normal hover:bg-[#D9DDDA] hover:text-custom-btn-secondary hover:border-custom-btn-secondary"
             disabled={isReadMoreDisabled}
           >
             <FaRegNoteSticky size={15} />
@@ -94,7 +94,7 @@ const Card = ({
             <Button
               variant="primary"
               onClick={handleClickArchive}
-              className="hover:bg-[#D9DDDA] hover:border-custom-txt-primary"
+              className="ml-1 hover:bg-[#D9DDDA] hover:border-custom-txt-primary"
             >
               {note.archived ? (
                 <LuArchiveRestore size={16} />
@@ -107,7 +107,7 @@ const Card = ({
             <Button
               variant="primary"
               onClick={handleClickEdit}
-              className="hover:bg-[#D9DDDA] hover:text-[#279EFF] hover:border-[#279EFF]"
+              className="ml-1 hover:bg-[#D9DDDA] hover:text-[#279EFF] hover:border-[#279EFF]"
             >
               <FiEdit size={16} />
             </Button>
@@ -116,7 +116,7 @@ const Card = ({
             <Button
               variant="primary"
               onClick={handleClickDelete}
-              className="hover:bg-[#D9DDDA] hover:text-[#FF1E00] hover:border-[#FF1E00]"
+              className="ml-1 hover:bg-[#D9DDDA] hover:text-[#FF1E00] hover:border-[#FF1E00]"
             >
               <FiTrash size={16} />
             </Button>
