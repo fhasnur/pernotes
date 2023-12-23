@@ -4,7 +4,7 @@ const Button = ({ children, onClick, className, disabled, variant }) => {
   const getVariantClass = () => {
     switch (variant) {
       case 'primary':
-        return 'bg-custom-btn-primary text-custom-txt-primary';
+        return '';
       case 'secondary':
         return 'bg-custom-btn-secondary text-custom-txt-secondary';
       case 'tertiary':

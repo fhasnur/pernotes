@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Container from './Container';
-import { FiMoon } from 'react-icons/fi';
 import SearchBar from './SearchBar';
+import ThemeToggle from './ThemeToggle';
 
 const Header = ({ searchQuery, handleSearch }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -22,7 +22,7 @@ const Header = ({ searchQuery, handleSearch }) => {
   }, []);
 
   return (
-    <header className="bg-custom-primary py-4 sticky top-0 left-0 z-50 shadow-sm bg-opacity-50 lg:bg-opacity-20 backdrop-filter backdrop-blur-md backdrop-saturate-100">
+    <header className={`py-4 sticky top-0 left-0 z-50 shadow-sm bg-opacity-50 lg:bg-opacity-20 backdrop-filter backdrop-blur-md backdrop-saturate-100`}>
       <Container>
         {isMobile ? (
           <>
@@ -32,9 +32,7 @@ const Header = ({ searchQuery, handleSearch }) => {
                   per.<span className="text-custom-btn-secondary">notes</span>
                 </p>
               </div>
-              <div className="flex-none text-custom-txt">
-                <FiMoon size={24} />
-              </div>
+              <ThemeToggle />
             </div>
             <div className="mt-4">
               <SearchBar
@@ -56,9 +54,7 @@ const Header = ({ searchQuery, handleSearch }) => {
                 handleSearch={handleSearch}
               />
             </div>
-            <div className="btn btn-link p-0 text-custom-txt-primary">
-              <FiMoon size={25} />
-            </div>
+            <ThemeToggle />
           </div>
         )}
       </Container>

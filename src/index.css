@@ -38,6 +38,11 @@ body {
   background-color: #c53131 !important;
 }
 
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  @import 'tailwindcss-dark-mode/prefers-dark';
+}
+
 @media only screen and (max-width: 600px) {
   .swal2-confirm {
     border-radius: 30px !important;

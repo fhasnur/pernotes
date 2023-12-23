@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { FiSearch } from 'react-icons/fi';
-
 const SearchBar = ({ className, searchQuery, handleSearch }) => {
+
   return (
     <div className="relative w-full">
       <input
@@ -9,7 +9,7 @@ const SearchBar = ({ className, searchQuery, handleSearch }) => {
         placeholder="Search notes.."
         value={searchQuery}
         onChange={(e) => handleSearch(e.target.value)}
-        className={`w-full input input-bordered rounded-full tracking-tighter text-base text-custom-txt pl-12 ${className}`}
+        className={`w-full input input-bordered border-slate-300 rounded-full tracking-tighter text-base text-custom-txt pl-12 ${className}`}
       />
       <div className="absolute inset-y-0 left-0 flex items-center pl-5">
         <FiSearch className="text-gray-400" />

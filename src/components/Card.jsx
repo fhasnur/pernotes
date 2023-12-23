@@ -66,7 +66,7 @@ const Card = ({
     <div className="flex-grow max-w-sm my-2overflow-hidden mb-5">
       <div
         key={note.id}
-        className="card p-8 bg-custom-primary rounded-2xl text-custom-txt-primary hover:shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] lg:mb-2 transition-all transform duration-300 ease-in-out"
+        className={`card p-8 border-2 rounded-2xl hover:shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] lg:mb-2 transition-all transform duration-300 ease-in-out`}
       >
         <div>
           <h2 className="font-medium text-2xl">{note.title}</h2>
@@ -81,7 +81,7 @@ const Card = ({
           <Button
             variant="primary"
             onClick={handleReadMore}
-            className="w-1/2 font-normal hover:bg-[#D9DDDA] hover:text-custom-btn-secondary hover:border-custom-btn-secondary"
+            className="w-1/2 font-normal hover:text-custom-btn-secondary hover:border-custom-btn-secondary"
             disabled={isReadMoreDisabled}
           >
             <FaRegNoteSticky size={15} />
@@ -94,7 +94,7 @@ const Card = ({
             <Button
               variant="primary"
               onClick={handleClickArchive}
-              className="ml-1 hover:bg-[#D9DDDA] hover:border-custom-txt-primary"
+              className="ml-1 hover:text-[#11999E] hover:border-[#11999E]"
             >
               {note.archived ? (
                 <LuArchiveRestore size={16} />
@@ -107,7 +107,7 @@ const Card = ({
             <Button
               variant="primary"
               onClick={handleClickEdit}
-              className="ml-1 hover:bg-[#D9DDDA] hover:text-[#279EFF] hover:border-[#279EFF]"
+              className="ml-1 hover:text-[#279EFF] hover:border-[#279EFF]"
             >
               <FiEdit size={16} />
             </Button>
@@ -116,7 +116,7 @@ const Card = ({
             <Button
               variant="primary"
               onClick={handleClickDelete}
-              className="ml-1 hover:bg-[#D9DDDA] hover:text-[#FF1E00] hover:border-[#FF1E00]"
+              className="ml-1 hover:text-[#FF1E00] hover:border-[#FF1E00]"
             >
               <FiTrash size={16} />
             </Button>

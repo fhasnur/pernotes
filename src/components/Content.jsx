@@ -216,7 +216,7 @@ const Content = ({ searchQuery }) => {
 
   return (
     <section>
-      <div className="flex min-h-screen gradient-bg -mt-20">
+      <div className={`flex min-h-screen -mt-20`}>
         <Container>
           <ContentHeader
             modalIsOpen={modalIsOpen}
