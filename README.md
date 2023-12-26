@@ -75,6 +75,7 @@ Check out the web version of **Pernotes** here: [per-notes.web.app](https://per-
   ```bash
   cd pernotes
   ```
+
 - Install the dependencies.
 
   ```bash

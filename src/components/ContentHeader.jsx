@@ -41,8 +41,9 @@ const ContentHeader = ({
         <Button
           onClick={() => setIsArchive(!isArchive)}
           variant={isArchive ? 'secondary' : 'tertiary'}
-          className={`ml-2 px-5 py-3 ${isArchive ? 'hover:bg-[#3261F2]' : 'hover:bg-[#2c344c]'
-            }`}
+          className={`ml-2 px-5 py-3 ${
+            isArchive ? 'hover:bg-[#3261F2]' : 'hover:bg-[#2c344c]'
+          }`}
         >
           {isArchive ? (
             <>

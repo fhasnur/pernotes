@@ -7,7 +7,7 @@ import ContentList from './ContentList';
 import { getInitialData } from '../utils/getInitialData';
 import { showFormattedDate } from '../utils/showFormattedDate';
 import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 import EmptyData from './EmptyData';
 
 const Content = ({ searchQuery }) => {

@@ -34,8 +34,8 @@ const Card = ({
       title: note.title,
       html: `<div class="max-h-96 overflow-y-auto text-left">${formattedBody}</div>
          <p class="font-light text-base mt-6">${showFormattedDate(
-        isEdit ? note.updatedAt : note.createdAt
-      )}</p>`,
+           isEdit ? note.updatedAt : note.createdAt
+         )}</p>`,
       confirmButtonText: 'Close',
       customClass: {
         popup: 'rounded-xl',

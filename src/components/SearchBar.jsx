@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { FiSearch } from 'react-icons/fi';
 const SearchBar = ({ className, searchQuery, handleSearch }) => {
-
   return (
     <div className="relative w-full">
       <input
