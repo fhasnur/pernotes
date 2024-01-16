@@ -9,33 +9,13 @@
   [**View the Web**](https://per-notes.web.app/)
 </div>
 
-## Table of Contents
-
-- [Description](#description)
-- [Live Demo](#live-demo)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Run Locally](#run-locally)
-  - [Getting Started](#getting-started)
-  - [Development](#development)
-  - [Production](#production)
-  - [Linting & Formatting](#linting--formatting)
-
 ## Description
 
-[`^ back to top ^`](#table-of-contents)
+contents)
 
 **Pernotes** is a web application that aims to simplify personal notes management. The application allows users to create, edit, delete and archive notes easily, providing a search feature for quick access to needed information. This project aims to deliver an intuitive and efficient user experience in composing and storing personal notes. It is built for Dicoding Submission - [Belajar Membuat Aplikasi Web dengan React](https://www.dicoding.com/academies/403).
 
-## Live Demo
-
-[`^ back to top ^`](#table-of-contents)
-
-Check out the web version of **Pernotes** here: [per-notes.web.app](https://per-notes.web.app/)
-
 ## Features
-
-[`^ back to top ^`](#table-of-contents)
 
 - **Note Creation**: Quickly and easily create notes.
 - **Flexible Editing**: Edit notes freely as needed.
@@ -46,8 +26,6 @@ Check out the web version of **Pernotes** here: [per-notes.web.app](https://per-
 
 ## Tech Stack
 
-[`^ back to top ^`](#table-of-contents)
-
 - Language: [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - Frontend Library: [React 18](https://react.dev)
 - Frontend Build Tool: [Vite](https://vitejs.dev)
@@ -57,61 +35,3 @@ Check out the web version of **Pernotes** here: [per-notes.web.app](https://per-
 - Hosting Platform: [Firebase](https://firebase.google.com/)
 - Linter: [ESLint](https://eslint.org)
 - Code Formatter: [Prettier](https://prettier.io)
-
-## Run Locally
-
-[`^ back to top ^`](#table-of-contents)
-
-### Getting Started
-
-- Make sure you have [Node.js](https://nodejs.org) & [Yarn](https://yarnpkg.com) installed on your computer.
-
-- Clone the repo.
-
-  ```bash
-  https://github.com/fhasnur/pernotes.git
-  ```
-
-  ```bash
-  cd pernotes
-  ```
-
-- Install the dependencies.
-
-  ```bash
-  yarn install
-  ```
-
-### Development
-
-Run the development server.
-
-```bash
-yarn dev
-```
-
-### Production
-
-Build the app.
-
-```bash
-yarn build
-```
-
-Locally preview the production build.
-
-```bash
-yarn preview
-```
-
-### Linting & Formatting
-
-If you want to fix ESLint error or format the code, you can run this command.
-
-```bash
-yarn lint:fix
-```
-
-```bash
-yarn prettier:fix
-```
